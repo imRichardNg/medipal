@@ -3,22 +3,22 @@ package iss.nus.medipal.asyncTask;
 import android.content.Context;
 import android.os.AsyncTask;
 
-import iss.nus.medipal.AppFolder.ICE;
-import iss.nus.medipal.dao.ICEDAO;
+import iss.nus.medipal.AppFolder.ICEContact;
+import iss.nus.medipal.dao.ICEContactDAO;
 
 /**
  * Created by richard on 4/3/17.
  */
 
-public class AddICE extends AsyncTask<ICE, Void, Long> {
-    private ICEDAO iceDAO;
+public class AddICEContact extends AsyncTask<ICEContact, Void, Long> {
+    private ICEContactDAO iceDAO;
 
-    public AddICE(Context context) {
-        this.iceDAO = new ICEDAO(context);
+    public AddICEContact(Context context) {
+        this.iceDAO = new ICEContactDAO(context);
     }
 
     @Override
-    protected Long doInBackground(ICE... params) {
+    protected Long doInBackground(ICEContact... params) {
         long result = iceDAO.save(params[0]);
         return result;
     }
