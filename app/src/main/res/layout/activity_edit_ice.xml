@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_edit_ice"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="iss.nus.medipal.activity.AddICEActivity">
+    tools:context="iss.nus.medipal.activity.EditICEActivity">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -87,16 +88,34 @@
                 android:layout_marginTop="10dp" />
 
             <Button
-                android:id="@+id/btn_addICe"
+                android:id="@+id/btn_editICE"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
-                android:layout_margin="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
                 android:background="@color/colorPrimary"
                 android:text="@string/save"
                 android:textColor="@android:color/white"
                 />
+
+            <Button
+                android:id="@+id/btn_removeICE"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginEnd="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:background="@android:color/holo_red_dark"
+                android:text="@string/delete"
+                android:textColor="@android:color/white"
+                />
         </LinearLayout>
     </ScrollView>
-
 </RelativeLayout>

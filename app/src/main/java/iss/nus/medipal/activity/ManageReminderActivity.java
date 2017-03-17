@@ -10,31 +10,31 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import iss.nus.medipal.R;
-import iss.nus.medipal.adapter.ICEContactListAdapter;
+import iss.nus.medipal.adapter.ReminderListAdapter;
 
-public class ManageICEActivity extends AppCompatActivity {
-    private ICEContactListAdapter iceContactListAdapter;
+public class ManageReminderActivity extends AppCompatActivity {
+    ReminderListAdapter reminderListAdapter;
 
     private TextView tvEmptyValue;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_manage_ice);
+        setContentView(R.layout.activity_manage_reminder);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         tvEmptyValue = (TextView) findViewById(R.id.tv_empty_value);
 
-        final ListView iceContactsList = (ListView) findViewById(R.id.lv_iceContacts_list);
-        iceContactListAdapter = new ICEContactListAdapter(this);
-        iceContactsList.setAdapter(iceContactListAdapter);
+        final ListView reminderList = (ListView) findViewById(R.id.lv_reminder_list);
+        reminderListAdapter = new ReminderListAdapter(this);
+        reminderList.setAdapter(reminderListAdapter);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getApplicationContext(), AddICEActivity.class));
+                startActivity(new Intent(getApplicationContext(), AddReminderActivity.class));
             }
         });
     }
@@ -42,7 +42,7 @@ public class ManageICEActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        iceContactListAdapter.refreshICEContacts();
-        tvEmptyValue.setVisibility(iceContactListAdapter.getCount() == 0 ? View.VISIBLE : View.GONE);
+        reminderListAdapter.refreshReminderList();
+        tvEmptyValue.setVisibility(reminderListAdapter.getCount() == 0 ? View.VISIBLE : View.GONE);
     }
 }

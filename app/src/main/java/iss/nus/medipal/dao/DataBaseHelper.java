@@ -16,21 +16,36 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     private static final String DROP_TABLE_IF_EXISTS = "DROP TABLE IF EXISTS";
 
     public static final String ICE_TABLE = "ice";
+    public static final String REMINDER_TABLE = "reminders";
+
     public static final String ID = "id";
+    public static final String WHERE_ID_EQUALS = ID + " =?";
+
     public static final String NAME = "name";
     public static final String CONTACT_NO = "contactNo";
     public static final String CONTACT_TYPE = "contactType";
     public static final String DESCRIPTION = "description";
     public static final String SEQUENCE = "sequence";
 
+    public static final String FREQUENCY = "frequency";
+    public static final String START_TIME = "startTime";
+    public static final String INTERVAL = "interval";
+
     private static final String CREATE_ICE_TABLE =
             "CREATE TABLE " + ICE_TABLE +
                     "(" + ID + " INTEGER PRIMARY KEY, " +
                     NAME + " TEXT, " +
                     CONTACT_NO + " TEXT, " +
-                    CONTACT_TYPE + " TEXT, " +
+                    CONTACT_TYPE + " INTEGER, " +
                     DESCRIPTION + " TEXT, " +
                     SEQUENCE + " INTEGER)";
+
+    private static final String CREATE_REMINDERS_TABLE =
+            "CREATE TABLE " + REMINDER_TABLE +
+                    "(" + ID + " INTEGER PRIMARY KEY, " +
+                    FREQUENCY + " INTEGER, " +
+                    START_TIME + " DATE, " +
+                    INTERVAL + " INTEGER)";
 
     private static DataBaseHelper instance;
 
@@ -50,6 +65,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(CREATE_ICE_TABLE);
+        db.execSQL(CREATE_REMINDERS_TABLE);
     }
 
     @Override
@@ -59,7 +75,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        Log.w(DataBaseHelper.class.getName(), "Upgrading data base from " + oldVersion + " to " +  newVersion + ", which will destroy all old data");
+        Log.w(DataBaseHelper.class.getName(), "Upgrading data base from " + oldVersion + " to " + newVersion + ", which will destroy all old data");
         db.execSQL(String.format("%s %s", DROP_TABLE_IF_EXISTS, ICE_TABLE));
         onCreate(db);
     }

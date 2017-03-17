@@ -1,9 +1,8 @@
 package iss.nus.medipal.activity;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.Button;
 
 import iss.nus.medipal.R;
@@ -11,6 +10,7 @@ import iss.nus.medipal.R;
 public class MainActivity extends AppCompatActivity {
 
     private Button btnManageICE;
+    private Button btnManageReminder;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,18 +18,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         btnManageICE = (Button) findViewById(R.id.btnManageICE);
-        btnManageICE.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startManageICE();
-            }
-        });
+        btnManageICE.setOnClickListener(v -> startActivity(new Intent(getApplicationContext(), ManageICEActivity.class)));
 
-
-    }
-
-    public void startManageICE() {
-        Intent intent = new Intent(this, ManageICEActivity.class);
-        startActivity(intent);
+        btnManageReminder = (Button) findViewById(R.id.btnManageReminder);
+        btnManageReminder.setOnClickListener((v -> startActivity(new Intent(getApplicationContext(), ManageReminderActivity.class))));
     }
 }
