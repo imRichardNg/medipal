@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:clickable="true">
+    android:clickable="true"
+    android:orientation="vertical">
 
     <TextView
-        android:layout_width="match_parent"
+        android:id="@+id/tv_name_title"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="22dp"
         android:layout_marginStart="22dp"
@@ -17,6 +18,7 @@
         android:id="@+id/tv_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@id/tv_name_title"
         android:layout_marginEnd="20dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
@@ -26,8 +28,10 @@
         android:textStyle="bold" />
 
     <TextView
-        android:layout_width="match_parent"
+        android:id="@+id/tv_contactNo_title"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@id/tv_name"
         android:layout_marginLeft="22dp"
         android:layout_marginStart="22dp"
         android:layout_marginTop="20dp"
@@ -37,6 +41,7 @@
         android:id="@+id/tv_contactNo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@id/tv_contactNo_title"
         android:layout_marginEnd="20dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
@@ -46,8 +51,10 @@
         android:textStyle="bold" />
 
     <TextView
-        android:layout_width="match_parent"
+        android:id="@+id/tv_contactType_title"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@id/tv_contactNo"
         android:layout_marginLeft="22dp"
         android:layout_marginStart="22dp"
         android:layout_marginTop="20dp"
@@ -57,6 +64,7 @@
         android:id="@+id/tv_contactType"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@id/tv_contactType_title"
         android:layout_marginEnd="20dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
@@ -66,24 +74,60 @@
         android:textStyle="bold" />
 
     <TextView
-        android:layout_width="match_parent"
+        android:id="@+id/tv_description_title"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@id/tv_contactType"
         android:layout_marginLeft="22dp"
         android:layout_marginStart="22dp"
         android:layout_marginTop="20dp"
-        android:text="Description"
-        android:id="@+id/tv_description_title"/>
+        android:text="Description" />
 
     <TextView
         android:id="@+id/tv_description"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@id/tv_description_title"
+        android:layout_marginBottom="20dp"
         android:layout_marginEnd="20dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:layout_marginStart="20dp"
         android:layout_marginTop="10dp"
-        android:layout_marginBottom="20dp"
         android:text="@string/placeholder"
         android:textStyle="bold" />
-</LinearLayout>
+
+    <Button
+        android:id="@+id/btn_editICE"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@id/tv_name_title"
+        android:layout_marginRight="20dp"
+        android:backgroundTint="@color/colorPrimary"
+        android:text="Edit"
+        android:textColor="@android:color/white" />
+
+    <ImageButton
+        android:id="@+id/btn_upICE"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/btn_editICE"
+        android:layout_marginRight="20dp"
+        android:backgroundTint="@color/colorPrimary"
+        android:src="@android:drawable/arrow_up_float"
+        android:textColor="@android:color/white" />
+
+    <ImageButton
+        android:id="@+id/btn_downICE"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/tv_description"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="20dp"
+        android:backgroundTint="@color/colorPrimary"
+        android:src="@android:drawable/arrow_down_float"
+        android:textColor="@android:color/white" />
+
+</RelativeLayout>

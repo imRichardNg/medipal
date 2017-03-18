@@ -3,6 +3,7 @@ package iss.nus.medipal.AppFolder;
 import android.content.Context;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
@@ -52,11 +53,21 @@ public class Medipal {
             reminderList = new ArrayList<ICEContact>();
         }
 
+        Collections.sort(reminderList, (o1, o2) -> {
+            if (o1.getSequence() < o2.getSequence()) {
+                return -1;
+            } else if (o1.getSequence() > o2.getSequence()) {
+                return 1;
+            } else {
+                return 0;
+            }
+        });
+
         return new ArrayList<ICEContact>(reminderList);
     }
 
-    public void editICE(int id, String name, String contactNo, int contactType, String description, Context context) {
-        ICEContact iceContact = new ICEContact(id, name, contactNo, contactType, description);
+    public void editICE(int id, String name, String contactNo, int contactType, String description, int sequence, Context context) {
+        ICEContact iceContact = new ICEContact(id, name, contactNo, contactType, description, sequence);
         taskICEEdit = new EditICEContact(context);
         taskICEEdit.execute(iceContact);
     }
