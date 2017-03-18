@@ -14,7 +14,6 @@
             android:label="@string/title_activity_main">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -40,6 +39,15 @@
         <activity android:name=".activity.ManageHealthBio" />
         <activity android:name=".activity.AddHealthBio" />
         <activity android:name=".activity.AddMeasurement" />
+
+        <activity
+            android:name=".activity.AddAppointmentActivity"
+            android:label="Add Medical Appointment" />
+        <activity
+            android:name=".activity.ManageAppointmentActivity"
+            android:label="Manage Medical Appointment"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".activity.EditAppointmentActivity"></activity>
     </application>
 
 </manifest>

@@ -12,6 +12,7 @@ public class MainActivity extends AppCompatActivity {
 
     private Button btnManageICE;
     private Button btnManageReminder;
+    private Button btnManageAppointment;
 
     private Button btnPersonalBio;
     private Button btnMeasurement;
@@ -27,6 +28,9 @@ public class MainActivity extends AppCompatActivity {
 
         btnManageReminder = (Button) findViewById(R.id.btnManageReminder);
         btnManageReminder.setOnClickListener((v -> startActivity(new Intent(getApplicationContext(), ManageReminderActivity.class))));
+
+        btnManageAppointment = (Button) findViewById(R.id.btnManageAppointment);
+        btnManageAppointment.setOnClickListener((v -> startActivity(new Intent(getApplicationContext(), ManageAppointmentActivity.class))));
 
         btnPersonalBio = (Button) findViewById(R.id.btnPersonalBio);
         btnPersonalBio.setOnClickListener(new View.OnClickListener() {

@@ -2,7 +2,6 @@
     <string name="app_name">medipal</string>
 
     <string name="save">Save</string>
-
     <string name="title_activity_manage_ice">Manage ICE Contacts</string>
     <string name="title_activity_add_ice">Add ICE Contacts</string>
     <string name="btn_remove">Remove</string>
@@ -27,5 +26,8 @@
     </string-array>
     <string name="title_activity_add_measurement_tab">activity_add_measurement_tab</string>
     <string name="action_settings">Settings</string>
+
+    <string name="appointment_empty">No Medical Appointment.</string>
+    <string name="addReminder">Set Reminder</string>
 
 </resources>

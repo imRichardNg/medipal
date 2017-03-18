@@ -17,6 +17,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
     public static final String ICE_TABLE = "ice";
     public static final String REMINDER_TABLE = "reminders";
+    public static final String APPOINTMENT_TABLE = "appointment";
 
     public static final String ID = "id";
     public static final String WHERE_ID_EQUALS = ID + " =?";
@@ -30,6 +31,19 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     public static final String FREQUENCY = "frequency";
     public static final String START_TIME = "startTime";
     public static final String INTERVAL = "interval";
+
+    public static final String LOCATION ="location";
+    public static final String APPOINTMENT ="appointmentDT";
+
+    public static final String Personal_Bio_TABLE = "personalbio";
+    public static final String Personal_ID = "id";
+    public static final String Personal_NAME = "name";
+    public static final String DOB = "dateOfBirth";
+    public static final String IDNo = "idno";
+    public static final String Address = "address";
+    public static final String PostalCode = "postalCode";
+    public static final String Height = "height";
+    public static final String BloodType = "bloodtype";
 
     private static final String CREATE_ICE_TABLE =
             "CREATE TABLE " + ICE_TABLE +
@@ -47,16 +61,6 @@ public class DataBaseHelper extends SQLiteOpenHelper {
                     START_TIME + " DATE, " +
                     INTERVAL + " INTEGER)";
 
-    public static final String Personal_Bio_TABLE = "personalbio";
-    public static final String Personal_ID = "id";
-    public static final String Personal_NAME = "name";
-    public static final String DOB = "dateOfBirth";
-    public static final String IDNo = "idno";
-    public static final String Address = "address";
-    public static final String PostalCode = "postalCode";
-    public static final String Height = "height";
-    public static final String BloodType = "bloodtype";
-
     private static final String CREATE_Personal_Bio_TABLE =
             "CREATE TABLE " + Personal_Bio_TABLE +
                     "(" + Personal_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
@@ -67,6 +71,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
                     PostalCode + " TEXT," +
                     Height + " INTEGER," +
                     BloodType + " TEXT)";
+
     public static final String Measurement_TABLE = "measurements";
     public static final String Measurement_ID = "id";
     public static final String Systolic = "systolic";
@@ -85,6 +90,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
                     Temperature + " REAL, " +
                     Weight + " INTEGER, " +
                     MeasuredOn + " DATE)";
+
     public static final String Health_Bio_TABLE = "healthbio";
     public static final String HealthBio_ID = "id";
     public static final String Condition = "condition";
@@ -97,6 +103,14 @@ public class DataBaseHelper extends SQLiteOpenHelper {
                     Condition + " TEXT, " +
                     StartDate + " DATE, " +
                     ConditionType + " TEXT)";
+
+    private static final String CREATE_APPOINTMENT_TABLE =
+            "CREATE TABLE " + APPOINTMENT_TABLE +
+                    "(" + ID + " INTEGER PRIMARY KEY, " +
+                    LOCATION + " TEXT, " +
+                    APPOINTMENT + " DATE, " +
+                    DESCRIPTION + " TEXT)";
+
 
     private static DataBaseHelper instance;
 
@@ -117,9 +131,13 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(CREATE_ICE_TABLE);
         db.execSQL(CREATE_REMINDERS_TABLE);
+
         db.execSQL(CREATE_Personal_Bio_TABLE);
         db.execSQL(CREATE_Health_Bio_TABLE);
         db.execSQL(CREATE_Measurement_TABLE);
+
+        db.execSQL(CREATE_APPOINTMENT_TABLE);
+
     }
 
     @Override
@@ -131,10 +149,14 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         Log.w(DataBaseHelper.class.getName(), "Upgrading data base from " + oldVersion + " to " + newVersion + ", which will destroy all old data");
         db.execSQL(String.format("%s %s", DROP_TABLE_IF_EXISTS, ICE_TABLE));
+
         db.execSQL(String.format("%s %s", DROP_TABLE_IF_EXISTS, REMINDER_TABLE));
         db.execSQL(String.format("%s %s", DROP_TABLE_IF_EXISTS, Personal_Bio_TABLE));
         db.execSQL(String.format("%s %s", DROP_TABLE_IF_EXISTS, Health_Bio_TABLE));
         db.execSQL(String.format("%s %s", DROP_TABLE_IF_EXISTS, Measurement_TABLE));
+
+        db.execSQL(String.format("%s %s", DROP_TABLE_IF_EXISTS, APPOINTMENT_TABLE));
+
         onCreate(db);
     }
 }
