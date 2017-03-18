@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.TextView;
 
 import java.text.SimpleDateFormat;
@@ -56,8 +57,9 @@ public class ReminderListAdapter extends ArrayAdapter<Reminder> {
         viewHolder.tv_interval = (TextView) convertView.findViewById(R.id.tv_interval);
         viewHolder.tv_interval_title = (TextView) convertView.findViewById(R.id.tv_interval_title);
 
-        convertView.setOnClickListener(v -> {
-            System.out.println("Editing.." + reminder);
+        viewHolder.btnEditReminder = (Button) convertView.findViewById(R.id.btn_editReminder);
+
+        viewHolder.btnEditReminder.setOnClickListener(v -> {
             Intent intent = new Intent(getContext().getApplicationContext(), EditReminderActivity.class);
             intent.putExtra("reminder", reminder);
             getContext().getApplicationContext().startActivity(intent);
@@ -101,5 +103,7 @@ public class ReminderListAdapter extends ArrayAdapter<Reminder> {
         TextView tv_frequency_title;
         TextView tv_interval;
         TextView tv_interval_title;
+
+        Button btnEditReminder;
     }
 }

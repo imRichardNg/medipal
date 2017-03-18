@@ -58,7 +58,7 @@ public class EditICEActivity extends AppCompatActivity {
                 String description = etDescription.getText().toString().trim();
 
                 if (isValidICEContact()) {
-                    App.medipal.editICE(iceContact.getId(), name, contactNo, contactType, description, getApplicationContext());
+                    App.medipal.editICE(iceContact.getId(), name, contactNo, contactType, description, iceContact.getSequence(), getApplicationContext());
                     finish();
                 }
             }

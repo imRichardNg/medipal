@@ -21,14 +21,18 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:height="75dp"
-            android:text="Manage ICE" />
+            android:backgroundTint="@color/colorPrimary"
+            android:text="Manage ICE"
+            android:textColor="@android:color/white" />
 
         <Button
             android:id="@+id/btnManageReminder"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:height="75dp"
-            android:text="Manage Reminder" />
+            android:backgroundTint="@color/colorPrimary"
+            android:text="Manage Reminder"
+            android:textColor="@android:color/white" />
 
     </LinearLayout>
 

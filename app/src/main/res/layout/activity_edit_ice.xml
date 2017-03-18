@@ -31,7 +31,8 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
                 android:layout_marginStart="20dp"
-                android:layout_marginTop="10dp" />
+                android:layout_marginTop="10dp"
+                android:inputType="text"/>
 
             <TextView
                 android:layout_width="match_parent"
@@ -49,7 +50,8 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
                 android:layout_marginStart="20dp"
-                android:layout_marginTop="10dp" />
+                android:layout_marginTop="10dp"
+                android:inputType="phone"/>
 
             <TextView
                 android:layout_width="match_parent"
@@ -85,7 +87,8 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
                 android:layout_marginStart="20dp"
-                android:layout_marginTop="10dp" />
+                android:layout_marginTop="10dp"
+                android:inputType="text"/>
 
             <Button
                 android:id="@+id/btn_editICE"
