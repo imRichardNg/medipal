@@ -34,6 +34,12 @@
             android:name=".activity.AddReminderActivity"
             android:label="@string/title_activity_add_reminder" />
         <activity android:name=".activity.EditReminderActivity"></activity>
+
+        <activity android:name=".activity.ManagePersonalBioActivity" />
+        <activity android:name=".activity.ManageMeasurementActivity" />
+        <activity android:name=".activity.ManageHealthBio" />
+        <activity android:name=".activity.AddHealthBio" />
+        <activity android:name=".activity.AddMeasurement" />
     </application>
 
 </manifest>

@@ -17,6 +17,33 @@
         android:orientation="vertical">
 
         <Button
+            android:id="@+id/btnPersonalBio"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:height="75dp"
+            android:backgroundTint="@color/colorPrimary"
+            android:text="Manage Personal Bio"
+            android:textColor="@android:color/white" />
+
+        <Button
+            android:id="@+id/btnMeasurement"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:height="75dp"
+            android:backgroundTint="@color/colorPrimary"
+            android:text="Add Measurement"
+            android:textColor="@android:color/white" />
+
+        <Button
+            android:id="@+id/btnHealthBio"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:height="75dp"
+            android:backgroundTint="@color/colorPrimary"
+            android:text="Add Health Bio"
+            android:textColor="@android:color/white" />
+
+        <Button
             android:id="@+id/btnManageICE"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -33,6 +60,7 @@
             android:backgroundTint="@color/colorPrimary"
             android:text="Manage Reminder"
             android:textColor="@android:color/white" />
+
 
     </LinearLayout>
 
