@@ -62,6 +62,24 @@
             android:textColor="@android:color/white" />
 
 
+        <Button
+            android:id="@+id/btnManageAppointment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:height="75dp"
+            android:text="Manage Medical Appointment"
+            android:backgroundTint="@color/colorPrimary"
+            android:textColor="@android:color/white" />
+
+        <Button
+            android:id="@+id/btnManageConsumption"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:height="75dp"
+            android:text="Manage Medical Consumption"
+            android:backgroundTint="@color/colorPrimary"
+            android:textColor="@android:color/white" />
+
     </LinearLayout>
 
 

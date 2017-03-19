@@ -8,17 +8,25 @@ import java.util.Date;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
+import iss.nus.medipal.asyncTask.AddAppointment;
+import iss.nus.medipal.asyncTask.AddConsumption;
 import iss.nus.medipal.asyncTask.AddHEALTHBIO;
 import iss.nus.medipal.asyncTask.AddICEContact;
 import iss.nus.medipal.asyncTask.AddMEASUREMENT;
 import iss.nus.medipal.asyncTask.AddPERSONALBIO;
 import iss.nus.medipal.asyncTask.AddReminder;
+import iss.nus.medipal.asyncTask.DeleteAppointment;
+import iss.nus.medipal.asyncTask.DeleteConsumption;
 import iss.nus.medipal.asyncTask.DeleteHealthBIO;
 import iss.nus.medipal.asyncTask.DeleteICEContact;
 import iss.nus.medipal.asyncTask.DeleteMEASUREMENT;
 import iss.nus.medipal.asyncTask.DeleteReminder;
+import iss.nus.medipal.asyncTask.EditAppointment;
+import iss.nus.medipal.asyncTask.EditConsumption;
 import iss.nus.medipal.asyncTask.EditICEContact;
 import iss.nus.medipal.asyncTask.EditReminder;
+import iss.nus.medipal.asyncTask.GetAppointmentList;
+import iss.nus.medipal.asyncTask.GetConsumptionList;
 import iss.nus.medipal.asyncTask.GetICEContactList;
 import iss.nus.medipal.asyncTask.GetReminderList;
 import iss.nus.medipal.asyncTask.ListHEALTHBIO;
@@ -57,7 +65,6 @@ public class Medipal {
     private UpdateMEASUREMENT taskMEASUREMENTUpdate;
     private DeleteMEASUREMENT taskMEASUREMENTDelete;
     private ListMEASUREMENT taskMEASUREMENTList;
-
 
     public void addICE(String name, String contactNo, int contactType, String description, Context applicationContext) {
         ICEContact iceContact = new ICEContact(name, contactNo, contactType, description);
@@ -261,5 +268,111 @@ public class Medipal {
         taskMEASUREMENTDelete = new DeleteMEASUREMENT(context);
         taskMEASUREMENTDelete.execute(measurementData);
         return measurementData;
+    }
+
+    public void addAppointment(String location, Date appointmentDate, String description, Context context) {
+        Appointment appointment = new Appointment(location, appointmentDate, description);
+
+        AddAppointment addAppointment = new AddAppointment(context);
+        addAppointment.execute(appointment);
+    }
+
+    public void editAppointment(int id, String location, Date appointmentDate, String description, Context context) {
+        Appointment appointment = new Appointment(id, location, appointmentDate, description);
+
+        EditAppointment editAppointment = new EditAppointment(context);
+        editAppointment.execute(appointment);
+    }
+
+    public void deleteAppointment(int id, Context context) {
+        Appointment appointment = new Appointment(id);
+
+        DeleteAppointment deleteAppointment = new DeleteAppointment(context);
+        deleteAppointment.execute(appointment);
+    }
+
+    public List<Appointment> getAppointmentList(Context context) {
+
+        GetAppointmentList getAppointmentList = new GetAppointmentList(context);
+        getAppointmentList.execute((Void) null);
+
+        List<Appointment> appointmentList = null;
+
+        try {
+            appointmentList = getAppointmentList.get();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+
+        if (appointmentList == null) {
+            appointmentList = new ArrayList<Appointment>();
+        }
+
+        return new ArrayList<Appointment>(appointmentList);
+    }
+
+    public void addConsumption(int medicineId,int quantity,Date consumedOn,Context context) {
+        Consumption consumption = new Consumption(medicineId,quantity,consumedOn);
+
+        AddConsumption addConsumption = new AddConsumption(context);
+        addConsumption.execute(consumption);
+    }
+
+    public void editConsumptoin(int id, int medicineId, int quantity, Date consumedOn, Context context) {
+        Consumption consumption = new Consumption(id,medicineId,quantity,consumedOn);
+
+        EditConsumption editConsumption = new EditConsumption(context);
+        editConsumption.execute(consumption);
+    }
+
+    public void deleteConsumption(int id, Context context) {
+        Consumption consumption = new Consumption(id);
+
+        DeleteConsumption deleteConsumption = new DeleteConsumption(context);
+        deleteConsumption.execute(consumption);
+    }
+
+    public List<Consumption> getConsumptionList(Context context) {
+
+        GetConsumptionList getConsumptionList = new GetConsumptionList(context);
+        getConsumptionList.execute((Void) null);
+
+        List<Consumption> consumptionList = null;
+
+        try {
+            consumptionList = getConsumptionList.get();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+
+        if (consumptionList == null) {
+            consumptionList = new ArrayList<Consumption>();
+        }
+
+        return new ArrayList<Consumption>(consumptionList);
+    }
+
+    public List<SpinnerObject> getAllConsumptionMedicineList(Context context){
+
+        GetConsumptionList getConsumptionList = new GetConsumptionList(context);
+        getConsumptionList.execute((Void) null);
+
+        List<SpinnerObject> medicineConsumptoinList = null;
+
+        try {
+            medicineConsumptoinList = getConsumptionList.getConsumptionMedicineList();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        if (medicineConsumptoinList == null) {
+            medicineConsumptoinList = new ArrayList<SpinnerObject>();
+        }
+
+        return new ArrayList<SpinnerObject>(medicineConsumptoinList);
     }
 }

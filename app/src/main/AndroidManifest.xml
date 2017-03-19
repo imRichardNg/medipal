@@ -40,6 +40,24 @@
         <activity android:name=".activity.ManageHealthBio" />
         <activity android:name=".activity.AddHealthBio" />
         <activity android:name=".activity.AddMeasurement" />
+        <activity
+            android:name=".activity.AddAppointmentActivity"
+            android:label="Add Medical Appointment" />
+        <activity
+            android:name=".activity.ManageAppointmentActivity"
+            android:label="Manage Medical Appointment"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activity.EditAppointmentActivity"
+            android:label="Edit Medical Appointment" />
+
+        <activity android:name=".activity.AddConsumptionActivity"
+            android:label="Add Medicine Consumption" />
+
+        <activity
+            android:name=".activity.ManageConsumptionActivity"
+            android:label="Manage Medicine Consumption"
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>
