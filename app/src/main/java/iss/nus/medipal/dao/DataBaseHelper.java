@@ -47,6 +47,57 @@ public class DataBaseHelper extends SQLiteOpenHelper {
                     START_TIME + " DATE, " +
                     INTERVAL + " INTEGER)";
 
+    public static final String Personal_Bio_TABLE = "personalbio";
+    public static final String Personal_ID = "id";
+    public static final String Personal_NAME = "name";
+    public static final String DOB = "dateOfBirth";
+    public static final String IDNo = "idno";
+    public static final String Address = "address";
+    public static final String PostalCode = "postalCode";
+    public static final String Height = "height";
+    public static final String BloodType = "bloodtype";
+
+    private static final String CREATE_Personal_Bio_TABLE =
+            "CREATE TABLE " + Personal_Bio_TABLE +
+                    "(" + Personal_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                    Personal_NAME + " VARCHAR(100), " +
+                    DOB + " DATE, " +
+                    IDNo + " TEXT, " +
+                    Address + " TEXT, " +
+                    PostalCode + " TEXT," +
+                    Height + " INTEGER," +
+                    BloodType + " TEXT)";
+    public static final String Measurement_TABLE = "measurements";
+    public static final String Measurement_ID = "id";
+    public static final String Systolic = "systolic";
+    public static final String Diastolic = "diastolic";
+    public static final String Pulse = "pulse";
+    public static final String Temperature = "Temperature";
+    public static final String Weight = "weight";
+    public static final String MeasuredOn = "measuredOn";
+
+    private static final String CREATE_Measurement_TABLE =
+            "CREATE TABLE " + Measurement_TABLE +
+                    "(" + Measurement_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                    Systolic + " INTEGER, " +
+                    Diastolic + " INTEGER, " +
+                    Pulse + " INTEGER, " +
+                    Temperature + " REAL, " +
+                    Weight + " INTEGER, " +
+                    MeasuredOn + " DATE)";
+    public static final String Health_Bio_TABLE = "healthbio";
+    public static final String HealthBio_ID = "id";
+    public static final String Condition = "condition";
+    public static final String StartDate = "startDate";
+    public static final String ConditionType = "ConditionType";
+
+    private static final String CREATE_Health_Bio_TABLE =
+            "CREATE TABLE " + Health_Bio_TABLE +
+                    "(" + HealthBio_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                    Condition + " TEXT, " +
+                    StartDate + " DATE, " +
+                    ConditionType + " TEXT)";
+
     private static DataBaseHelper instance;
 
     private DataBaseHelper(Context context) {
@@ -66,6 +117,9 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(CREATE_ICE_TABLE);
         db.execSQL(CREATE_REMINDERS_TABLE);
+        db.execSQL(CREATE_Personal_Bio_TABLE);
+        db.execSQL(CREATE_Health_Bio_TABLE);
+        db.execSQL(CREATE_Measurement_TABLE);
     }
 
     @Override
@@ -77,6 +131,10 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         Log.w(DataBaseHelper.class.getName(), "Upgrading data base from " + oldVersion + " to " + newVersion + ", which will destroy all old data");
         db.execSQL(String.format("%s %s", DROP_TABLE_IF_EXISTS, ICE_TABLE));
+        db.execSQL(String.format("%s %s", DROP_TABLE_IF_EXISTS, REMINDER_TABLE));
+        db.execSQL(String.format("%s %s", DROP_TABLE_IF_EXISTS, Personal_Bio_TABLE));
+        db.execSQL(String.format("%s %s", DROP_TABLE_IF_EXISTS, Health_Bio_TABLE));
+        db.execSQL(String.format("%s %s", DROP_TABLE_IF_EXISTS, Measurement_TABLE));
         onCreate(db);
     }
 }
