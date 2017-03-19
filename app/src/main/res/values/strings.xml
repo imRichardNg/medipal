@@ -29,5 +29,5 @@
 
     <string name="appointment_empty">No Medical Appointment.</string>
     <string name="addReminder">Set Reminder</string>
-
+    <string name="consumption_empty">No Medicine Consumption.</string>
 </resources>

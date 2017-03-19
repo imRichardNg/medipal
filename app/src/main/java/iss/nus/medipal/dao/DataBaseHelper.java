@@ -18,6 +18,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     public static final String ICE_TABLE = "ice";
     public static final String REMINDER_TABLE = "reminders";
     public static final String APPOINTMENT_TABLE = "appointment";
+    public static final String CONSUMPTION_TABLE = "consumption";
 
     public static final String ID = "id";
     public static final String WHERE_ID_EQUALS = ID + " =?";
@@ -44,6 +45,24 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     public static final String PostalCode = "postalCode";
     public static final String Height = "height";
     public static final String BloodType = "bloodtype";
+
+    public static final String MEDICINEID ="medicineId";
+    public static final String DOSAGEQUANTITY ="quantity";
+    public static final String CONSUMEDON ="consumedOn";
+
+    public static final String MEDICINE_TABLE = "medicine";
+    public static final String MEDICINE_ID = "medicineId";
+    public static final String MEDICINE_NAME = "medicineName";
+    public static final String MEDICINE_DESCRIPTION = "medicineDescription";
+    public static final String MEDICINE_CATEGORY_ID = "categoryId";
+    public static final String REMIND = "reminderFlag";
+    public static final String REMINDER_ID = "reminderId";
+    //public static final String QUANTITY = "reminderFlag";
+    public static final String DOSAGE = "reminderFlag";
+    public static final String CONSUMED_QUANTITY = "consumedQuantity";
+    public static final String THERSHOLD = "thershold";
+    public static final String DATE_ISSUED = "dateIssued";
+    public static final String EXPIRE_FACTOR = "expireFactor";
 
     private static final String CREATE_ICE_TABLE =
             "CREATE TABLE " + ICE_TABLE +
@@ -111,6 +130,12 @@ public class DataBaseHelper extends SQLiteOpenHelper {
                     APPOINTMENT + " DATE, " +
                     DESCRIPTION + " TEXT)";
 
+    private static final String CREATE_CONSUMPTION_TABLE =
+            "CREATE TABLE " + CONSUMPTION_TABLE +
+                    "(" + ID + " INTEGER PRIMARY KEY, " +
+                    MEDICINEID + " INTEGER, " +
+                    DOSAGEQUANTITY + " INTEGER, " +
+                    CONSUMEDON + " DATE)";
 
     private static DataBaseHelper instance;
 
@@ -137,7 +162,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         db.execSQL(CREATE_Measurement_TABLE);
 
         db.execSQL(CREATE_APPOINTMENT_TABLE);
-
+        db.execSQL(CREATE_CONSUMPTION_TABLE);
     }
 
     @Override
@@ -156,6 +181,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         db.execSQL(String.format("%s %s", DROP_TABLE_IF_EXISTS, Measurement_TABLE));
 
         db.execSQL(String.format("%s %s", DROP_TABLE_IF_EXISTS, APPOINTMENT_TABLE));
+        db.execSQL(String.format("%s %s", DROP_TABLE_IF_EXISTS, CONSUMPTION_TABLE));
 
         onCreate(db);
     }

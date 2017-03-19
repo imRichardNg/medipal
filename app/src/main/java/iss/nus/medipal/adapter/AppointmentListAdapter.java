@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.TextView;
 
 import java.text.SimpleDateFormat;
@@ -17,10 +18,8 @@ import java.util.List;
 import java.util.Locale;
 
 import iss.nus.medipal.AppFolder.Appointment;
-import iss.nus.medipal.AppFolder.ICEContact;
 import iss.nus.medipal.R;
 import iss.nus.medipal.activity.EditAppointmentActivity;
-import iss.nus.medipal.activity.EditICEActivity;
 import iss.nus.medipal.application.App;
 
 public class AppointmentListAdapter extends ArrayAdapter<Appointment>{
@@ -50,17 +49,25 @@ public class AppointmentListAdapter extends ArrayAdapter<Appointment>{
 
         viewHolder.id = appointment.getId();
         viewHolder.tv_location = (TextView) convertView.findViewById(R.id.tv_location);
+        viewHolder.tv_location_title = (TextView)convertView.findViewById(R.id.tv_location_title);
         viewHolder.tv_appointmentDate = (TextView) convertView.findViewById(R.id.tv_appointmentDate);
         viewHolder.tv_appointmentTime = (TextView) convertView.findViewById(R.id.tv_appointmentTime);
         viewHolder.tv_description = (TextView) convertView.findViewById(R.id.tv_description);
         viewHolder.tv_description_title = (TextView) convertView.findViewById(R.id.tv_description_title);
+        viewHolder.btn_editAppointment = (Button) convertView.findViewById(R.id.btn_editAppointment);
 
-        convertView.setOnClickListener(v -> {
-            System.out.println("Editing.." + appointment);
+        viewHolder.btn_editAppointment.setOnClickListener(v -> {
             Intent intent = new Intent(getContext().getApplicationContext(), EditAppointmentActivity.class);
             intent.putExtra("appointment", appointment);
             getContext().getApplicationContext().startActivity(intent);
         });
+
+        /*convertView.setOnClickListener(v -> {
+            System.out.println("Editing.." + appointment);
+            Intent intent = new Intent(getContext().getApplicationContext(), EditAppointmentActivity.class);
+            intent.putExtra("appointment", appointment);
+            getContext().getApplicationContext().startActivity(intent);
+        });*/
 
         convertView.setTag(viewHolder);
 
@@ -93,5 +100,7 @@ public class AppointmentListAdapter extends ArrayAdapter<Appointment>{
         TextView tv_appointmentTime;
         TextView tv_description;
         TextView tv_description_title;
+
+        Button btn_editAppointment;
     }
 }

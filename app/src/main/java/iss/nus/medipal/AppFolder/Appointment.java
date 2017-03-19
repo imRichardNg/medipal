@@ -39,6 +39,7 @@ public class Appointment implements Parcelable {
     }
 
     public static final Creator<Appointment> CREATOR = new Creator<Appointment>() {
+
         @Override
         public Appointment createFromParcel(Parcel in) {
             return new Appointment(in);

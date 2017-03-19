@@ -2,11 +2,9 @@ package iss.nus.medipal.asyncTask;
 
 import android.content.Context;
 import android.os.AsyncTask;
-
 import iss.nus.medipal.AppFolder.Appointment;
-import iss.nus.medipal.AppFolder.Reminder;
+
 import iss.nus.medipal.dao.AppointmentDAO;
-import iss.nus.medipal.dao.ReminderDAO;
 
 public class AddAppointment extends AsyncTask<Appointment, Void, Long> {
     private AppointmentDAO appointmentDAO;

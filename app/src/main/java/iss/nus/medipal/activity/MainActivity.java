@@ -13,6 +13,7 @@ public class MainActivity extends AppCompatActivity {
     private Button btnManageICE;
     private Button btnManageReminder;
     private Button btnManageAppointment;
+    private Button btnManageConsumption;
 
     private Button btnPersonalBio;
     private Button btnMeasurement;
@@ -55,6 +56,9 @@ public class MainActivity extends AppCompatActivity {
                 startHealthBio();
             }
         });
+
+        btnManageConsumption = (Button) findViewById(R.id.btnManageConsumption);
+        btnManageConsumption.setOnClickListener((v -> startActivity(new Intent(getApplicationContext(), ManageConsumptionActivity.class))));
     }
 
     public void startPersonlBio() {
