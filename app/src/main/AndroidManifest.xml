@@ -2,6 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="iss.nus.medipal">
 
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="com.android.alarm.permission.SET_ALARM" />
+
     <application
         android:name=".application.App"
         android:allowBackup="true"
@@ -33,7 +37,12 @@
         <activity
             android:name=".activity.AddReminderActivity"
             android:label="@string/title_activity_add_reminder" />
-        <activity android:name=".activity.EditReminderActivity"></activity>
+        <activity android:name=".activity.EditReminderActivity" />
+
+        <receiver
+            android:name=".notification.NotificationPublisher"
+            android:enabled="true"
+            android:exported="true" />
     </application>
 
 </manifest>
