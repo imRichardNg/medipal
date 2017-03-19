@@ -11,76 +11,90 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="iss.nus.medipal.activity.MainActivity">
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
-        <Button
-            android:id="@+id/btnPersonalBio"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:height="75dp"
-            android:backgroundTint="@color/colorPrimary"
-            android:text="Manage Personal Bio"
-            android:textColor="@android:color/white" />
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-        <Button
-            android:id="@+id/btnMeasurement"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:height="75dp"
-            android:backgroundTint="@color/colorPrimary"
-            android:text="Add Measurement"
-            android:textColor="@android:color/white" />
+            <Button
+                android:id="@+id/btnPersonalBio"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:height="75dp"
+                android:backgroundTint="@color/colorPrimary"
+                android:text="Manage Personal Bio"
+                android:textColor="@android:color/white" />
 
-        <Button
-            android:id="@+id/btnHealthBio"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:height="75dp"
-            android:backgroundTint="@color/colorPrimary"
-            android:text="Add Health Bio"
-            android:textColor="@android:color/white" />
+            <Button
+                android:id="@+id/btnMeasurement"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:height="75dp"
+                android:backgroundTint="@color/colorPrimary"
+                android:text="Add Measurement"
+                android:textColor="@android:color/white" />
 
-        <Button
-            android:id="@+id/btnManageICE"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:height="75dp"
-            android:backgroundTint="@color/colorPrimary"
-            android:text="Manage ICE"
-            android:textColor="@android:color/white" />
+            <Button
+                android:id="@+id/btnHealthBio"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:height="75dp"
+                android:backgroundTint="@color/colorPrimary"
+                android:text="Add Health Bio"
+                android:textColor="@android:color/white" />
 
-        <Button
-            android:id="@+id/btnManageReminder"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:height="75dp"
-            android:backgroundTint="@color/colorPrimary"
-            android:text="Manage Reminder"
-            android:textColor="@android:color/white" />
+            <Button
+                android:id="@+id/btnManageCategory"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:height="75dp"
+                android:backgroundTint="@color/colorPrimary"
+                android:text="@string/manage_category"
+                android:textColor="@android:color/white" />
+
+            <Button
+                android:id="@+id/btnManageICE"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:height="75dp"
+                android:backgroundTint="@color/colorPrimary"
+                android:text="Manage ICE"
+                android:textColor="@android:color/white" />
+
+            <Button
+                android:id="@+id/btnManageReminder"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:height="75dp"
+                android:backgroundTint="@color/colorPrimary"
+                android:text="Manage Reminder"
+                android:textColor="@android:color/white" />
 
 
-        <Button
-            android:id="@+id/btnManageAppointment"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:height="75dp"
-            android:text="Manage Medical Appointment"
-            android:backgroundTint="@color/colorPrimary"
-            android:textColor="@android:color/white" />
+            <Button
+                android:id="@+id/btnManageAppointment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:height="75dp"
+                android:backgroundTint="@color/colorPrimary"
+                android:text="Manage Medical Appointment"
+                android:textColor="@android:color/white" />
 
-        <Button
-            android:id="@+id/btnManageConsumption"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:height="75dp"
-            android:text="Manage Medical Consumption"
-            android:backgroundTint="@color/colorPrimary"
-            android:textColor="@android:color/white" />
+            <Button
+                android:id="@+id/btnManageConsumption"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:height="75dp"
+                android:backgroundTint="@color/colorPrimary"
+                android:text="Manage Medical Consumption"
+                android:textColor="@android:color/white" />
 
-    </LinearLayout>
+        </LinearLayout>
 
+    </ScrollView>
 
 </RelativeLayout>

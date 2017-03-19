@@ -11,7 +11,7 @@ import android.util.Log;
 
 public class DataBaseHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "medipalData";
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 2;
 
     private static final String DROP_TABLE_IF_EXISTS = "DROP TABLE IF EXISTS";
 
@@ -55,14 +55,20 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     public static final String MEDICINE_NAME = "medicineName";
     public static final String MEDICINE_DESCRIPTION = "medicineDescription";
     public static final String MEDICINE_CATEGORY_ID = "categoryId";
+    public static final String QUANTITY = "quantity";
     public static final String REMIND = "reminderFlag";
     public static final String REMINDER_ID = "reminderId";
-    //public static final String QUANTITY = "reminderFlag";
     public static final String DOSAGE = "reminderFlag";
     public static final String CONSUMED_QUANTITY = "consumedQuantity";
     public static final String THERSHOLD = "thershold";
     public static final String DATE_ISSUED = "dateIssued";
     public static final String EXPIRE_FACTOR = "expireFactor";
+
+    public static final String CATEGORY_TABLE = "category";
+    public static final String CAT_ID = "id";
+    public static final String CATEGORY = "categoryShortDescriptions";
+    public static final String CODE = "code";
+    public static final String CAT_DESCRIPTION = "description";
 
     private static final String CREATE_ICE_TABLE =
             "CREATE TABLE " + ICE_TABLE +
@@ -90,6 +96,29 @@ public class DataBaseHelper extends SQLiteOpenHelper {
                     PostalCode + " TEXT," +
                     Height + " INTEGER," +
                     BloodType + " TEXT)";
+
+    private static final String CREATE_MEDICINE_TABLE =
+            "CREATE TABLE " + MEDICINE_TABLE +
+                    "(" + ID + " INTEGER PRIMARY KEY, " +
+                    MEDICINE_NAME + " TEXT, " +
+                    MEDICINE_DESCRIPTION + " TEXT, " +
+                    MEDICINE_CATEGORY_ID + " INTEGER, " +
+                    REMINDER_ID + " INTEGER, " +
+                    REMIND + " BOOLEAN, " +
+                    QUANTITY + " INTEGER" +
+                    DOSAGE + " INTEGER, " +
+                    CONSUMED_QUANTITY + " INTEGER, " +
+                    THERSHOLD + " INTEGER, " +
+                    EXPIRE_FACTOR + " INTEGER, " +
+                    DATE_ISSUED + " DATE )";
+
+    private static final String CREATE_CATEGORY_TABLE =
+            "CREATE TABLE " + CATEGORY_TABLE +
+                    "(" + ID + " INTEGER PRIMARY KEY, " +
+                    CATEGORY + " TEXT, " +
+                    CODE + " TEXT, " +
+                    CAT_DESCRIPTION + " TEXT, " +
+                    REMIND + " BOOLEAN)";
 
     public static final String Measurement_TABLE = "measurements";
     public static final String Measurement_ID = "id";
@@ -163,6 +192,9 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
         db.execSQL(CREATE_APPOINTMENT_TABLE);
         db.execSQL(CREATE_CONSUMPTION_TABLE);
+
+        db.execSQL(CREATE_MEDICINE_TABLE);
+        db.execSQL(CREATE_CATEGORY_TABLE);
     }
 
     @Override
@@ -174,15 +206,14 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         Log.w(DataBaseHelper.class.getName(), "Upgrading data base from " + oldVersion + " to " + newVersion + ", which will destroy all old data");
         db.execSQL(String.format("%s %s", DROP_TABLE_IF_EXISTS, ICE_TABLE));
-
         db.execSQL(String.format("%s %s", DROP_TABLE_IF_EXISTS, REMINDER_TABLE));
         db.execSQL(String.format("%s %s", DROP_TABLE_IF_EXISTS, Personal_Bio_TABLE));
         db.execSQL(String.format("%s %s", DROP_TABLE_IF_EXISTS, Health_Bio_TABLE));
         db.execSQL(String.format("%s %s", DROP_TABLE_IF_EXISTS, Measurement_TABLE));
-
         db.execSQL(String.format("%s %s", DROP_TABLE_IF_EXISTS, APPOINTMENT_TABLE));
         db.execSQL(String.format("%s %s", DROP_TABLE_IF_EXISTS, CONSUMPTION_TABLE));
-
+        db.execSQL(String.format("%s %s", DROP_TABLE_IF_EXISTS, CATEGORY_TABLE));
+        db.execSQL(String.format("%s %s", DROP_TABLE_IF_EXISTS, MEDICINE_TABLE));
         onCreate(db);
     }
 }

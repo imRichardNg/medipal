@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 import iss.nus.medipal.asyncTask.AddAppointment;
+import iss.nus.medipal.asyncTask.AddCategory;
 import iss.nus.medipal.asyncTask.AddConsumption;
 import iss.nus.medipal.asyncTask.AddHEALTHBIO;
 import iss.nus.medipal.asyncTask.AddICEContact;
@@ -16,16 +17,19 @@ import iss.nus.medipal.asyncTask.AddMEASUREMENT;
 import iss.nus.medipal.asyncTask.AddPERSONALBIO;
 import iss.nus.medipal.asyncTask.AddReminder;
 import iss.nus.medipal.asyncTask.DeleteAppointment;
+import iss.nus.medipal.asyncTask.DeleteCategory;
 import iss.nus.medipal.asyncTask.DeleteConsumption;
 import iss.nus.medipal.asyncTask.DeleteHealthBIO;
 import iss.nus.medipal.asyncTask.DeleteICEContact;
 import iss.nus.medipal.asyncTask.DeleteMEASUREMENT;
 import iss.nus.medipal.asyncTask.DeleteReminder;
 import iss.nus.medipal.asyncTask.EditAppointment;
+import iss.nus.medipal.asyncTask.EditCategoryList;
 import iss.nus.medipal.asyncTask.EditConsumption;
 import iss.nus.medipal.asyncTask.EditICEContact;
 import iss.nus.medipal.asyncTask.EditReminder;
 import iss.nus.medipal.asyncTask.GetAppointmentList;
+import iss.nus.medipal.asyncTask.GetCategoryList;
 import iss.nus.medipal.asyncTask.GetConsumptionList;
 import iss.nus.medipal.asyncTask.GetICEContactList;
 import iss.nus.medipal.asyncTask.GetReminderList;
@@ -47,6 +51,8 @@ public class Medipal {
     private List<Health_Bio> health_bioList;
     private List<MeasurementData> measurementDataList;
 
+    private List<Category> categoryList;
+
     private AddICEContact taskICEAdd;
     private GetICEContactList taskICEList;
     private EditICEContact taskICEEdit;
@@ -65,6 +71,10 @@ public class Medipal {
     private UpdateMEASUREMENT taskMEASUREMENTUpdate;
     private DeleteMEASUREMENT taskMEASUREMENTDelete;
     private ListMEASUREMENT taskMEASUREMENTList;
+
+    private AddCategory taskCategoryAdd;
+    private GetCategoryList taskCategoryList;
+    private EditCategoryList taskCategoryEdit;
 
     public void addICE(String name, String contactNo, int contactType, String description, Context applicationContext) {
         ICEContact iceContact = new ICEContact(name, contactNo, contactType, description);
@@ -313,15 +323,15 @@ public class Medipal {
         return new ArrayList<Appointment>(appointmentList);
     }
 
-    public void addConsumption(int medicineId,int quantity,Date consumedOn,Context context) {
-        Consumption consumption = new Consumption(medicineId,quantity,consumedOn);
+    public void addConsumption(int medicineId, int quantity, Date consumedOn, Context context) {
+        Consumption consumption = new Consumption(medicineId, quantity, consumedOn);
 
         AddConsumption addConsumption = new AddConsumption(context);
         addConsumption.execute(consumption);
     }
 
     public void editConsumptoin(int id, int medicineId, int quantity, Date consumedOn, Context context) {
-        Consumption consumption = new Consumption(id,medicineId,quantity,consumedOn);
+        Consumption consumption = new Consumption(id, medicineId, quantity, consumedOn);
 
         EditConsumption editConsumption = new EditConsumption(context);
         editConsumption.execute(consumption);
@@ -356,7 +366,7 @@ public class Medipal {
         return new ArrayList<Consumption>(consumptionList);
     }
 
-    public List<SpinnerObject> getAllConsumptionMedicineList(Context context){
+    public List<SpinnerObject> getAllConsumptionMedicineList(Context context) {
 
         GetConsumptionList getConsumptionList = new GetConsumptionList(context);
         getConsumptionList.execute((Void) null);
@@ -374,5 +384,43 @@ public class Medipal {
         }
 
         return new ArrayList<SpinnerObject>(medicineConsumptoinList);
+    }
+
+    public void addCategory(String cat, String code, String categoryDescription, boolean isReminder, Context context) {
+        Category category = new Category(cat, code, categoryDescription, isReminder);
+
+        taskCategoryAdd = new AddCategory(context);
+        taskCategoryAdd.execute(category);
+    }
+
+    public List<Category> getCategoryList(Context context) {
+        taskCategoryList = new GetCategoryList(context);
+        taskCategoryList.execute((Void) null);
+
+        try {
+            categoryList = taskCategoryList.get();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+
+        if (categoryList == null) {
+            categoryList = new ArrayList<Category>();
+        }
+        return new ArrayList<Category>(categoryList);
+    }
+
+    public void editCategory(int categoryID, String cat, String code, String categoryDescription, boolean isReminder, Context context) {
+        Category category = new Category(cat, code, categoryDescription, isReminder);
+        taskCategoryEdit = new EditCategoryList(context);
+        taskCategoryEdit.execute(category);
+    }
+
+    public void deleteCategory(int id, Context context) {
+        Category category = new Category(id);
+
+        DeleteCategory deleteCategory = new DeleteCategory(context);
+        deleteCategory.execute(category);
     }
 }
