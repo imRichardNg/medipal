@@ -18,6 +18,7 @@ public class MainActivity extends AppCompatActivity {
     private Button btnPersonalBio;
     private Button btnMeasurement;
     private Button btnHealthBio;
+    private Button btnManageCategory;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +60,15 @@ public class MainActivity extends AppCompatActivity {
 
         btnManageConsumption = (Button) findViewById(R.id.btnManageConsumption);
         btnManageConsumption.setOnClickListener((v -> startActivity(new Intent(getApplicationContext(), ManageConsumptionActivity.class))));
+
+
+        btnManageCategory = (Button) findViewById(R.id.btnManageCategory);
+        btnManageCategory.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startManageCategory();
+            }
+        });
     }
 
     public void startPersonlBio() {
@@ -73,6 +83,11 @@ public class MainActivity extends AppCompatActivity {
 
     public void startHealthBio() {
         Intent intent = new Intent(this, ManageHealthBio.class);
+        startActivity(intent);
+    }
+
+    public void startManageCategory() {
+        Intent intent = new Intent(this, ManageCategoryActivity.class);
         startActivity(intent);
     }
 }
