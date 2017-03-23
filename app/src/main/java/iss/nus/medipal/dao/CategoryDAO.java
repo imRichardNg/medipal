@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import iss.nus.medipal.AppFolder.Category;
+import iss.nus.medipal.AppFolder.SpinnerObject;
 
 import static iss.nus.medipal.dao.DataBaseHelper.WHERE_ID_EQUALS;
 
@@ -29,7 +30,7 @@ public class CategoryDAO extends DBDAO implements DAOInterface<Category> {
         values.put(DataBaseHelper.CATEGORY, category.getCategory());
         values.put(DataBaseHelper.CODE, category.getCode());
         values.put(DataBaseHelper.CAT_DESCRIPTION, category.getCategoryDescription());
-        values.put(DataBaseHelper.REMIND, category.isReminder()? 1 : 0);
+        values.put(DataBaseHelper.REMIND, category.isReminder() ? 1 : 0);
         return database.insert(DataBaseHelper.CATEGORY_TABLE, null, values);
     }
 
@@ -43,7 +44,7 @@ public class CategoryDAO extends DBDAO implements DAOInterface<Category> {
         values.put(DataBaseHelper.CATEGORY, category.getCategory());
         values.put(DataBaseHelper.CODE, category.getCode());
         values.put(DataBaseHelper.CAT_DESCRIPTION, category.getCategoryDescription());
-        values.put(DataBaseHelper.REMIND, category.isReminder()? 1 : 0);
+        values.put(DataBaseHelper.REMIND, category.isReminder() ? 1 : 0);
         return database.update(DataBaseHelper.CATEGORY_TABLE, values, WHERE_ID_EQUALS, new String[]{String.valueOf(category.getCategoryID())});
     }
 
@@ -65,7 +66,7 @@ public class CategoryDAO extends DBDAO implements DAOInterface<Category> {
 
         Cursor cursor = database.rawQuery(sql, new String[]{String.valueOf(category.getCategoryID())});
 
-        while(cursor.moveToNext()) {
+        while (cursor.moveToNext()) {
             int id = cursor.getInt(0);
             String catName = cursor.getString(1);
             String code = cursor.getString(2);
@@ -99,10 +100,34 @@ public class CategoryDAO extends DBDAO implements DAOInterface<Category> {
             boolean isReminder = cursor.getInt(4) == 1;
 
             Category category = new Category(id, catName, code, catDescription, isReminder);
-            System.out.println("category: " +category);
+            System.out.println("category: " + category);
             categoryList.add(category);
         }
 
         return categoryList;
     }
+
+
+    public List<SpinnerObject> getAllCategory() {
+        List<SpinnerObject> lables = new ArrayList<SpinnerObject>();
+
+        // db portion
+        String sql = "SELECT " + DataBaseHelper.ID + ", "
+                + DataBaseHelper.CODE + ", " + DataBaseHelper.CAT_DESCRIPTION
+                + " FROM " + DataBaseHelper.CATEGORY_TABLE;
+
+        Cursor cursor = database.rawQuery(sql, null);
+        while (cursor.moveToNext()) {
+            lables.add(new SpinnerObject(cursor.getInt(0), cursor.getInt(0) + "_" + cursor.getString(1)));
+        }
+
+        if (cursor.getCount() == 0) {
+            lables.add((new SpinnerObject(1, "HIV")));
+            lables.add((new SpinnerObject(2, "Painful")));
+            lables.add((new SpinnerObject(3, "TB")));
+        }
+
+        return lables;
+    }
+
 }
