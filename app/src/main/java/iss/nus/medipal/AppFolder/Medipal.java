@@ -138,7 +138,13 @@ public class Medipal {
         Reminder reminder = new Reminder(startDate, frequency, interval);
 
         AddReminder addReminder = new AddReminder(context);
-        addReminder.execute(reminder);
+        try {
+            System.out.println(addReminder.execute(reminder).get());
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
     }
 
     public void editReminder(int id, Date startDate, int frequency, int interval, Context context) {

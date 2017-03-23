@@ -41,4 +41,9 @@
 
     <string name="manage_medicine">Manage Medicine</string>
     <string name="medicine_empty">No Medicine List.</string>
+
+    <string name="reminder_notification_title_template">Reminder</string>
+
+    <string name="action_share">Share</string>
+    <string name="action_reply">Reply</string>
 </resources>
