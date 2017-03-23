@@ -64,6 +64,9 @@
             android:label="Manage Medicine Consumption"
             android:theme="@style/AppTheme.NoActionBar" />
 
+        <activity android:name=".activity.EditConsumptionActivity"
+            android:label="Edit Medical Consumption" />
+
         <activity
             android:name=".activity.AddCategoryActivity"
             android:label="@string/title_activity_add_category" />
@@ -72,7 +75,6 @@
             android:label="@string/manage_category"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".activity.EditCategoryActivity" />
-
 
         <activity
             android:name=".activity.ManageMedicineActivity"

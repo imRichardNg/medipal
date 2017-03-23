@@ -31,14 +31,14 @@ public class Medicine implements Parcelable {
     }
 
     public Medicine(int medicineId) {
-        this(medicineId, null, null, true,-1,-1,-1,-1,-1,-1,-1,null);
+        this(medicineId, null, null, true, -1, -1, -1, -1, -1, -1, -1, null);
     }
 
-    public Medicine(String medicineName, String medicineDescription, boolean isRemind, int categoryID, int reminderID, int quantity, int dosage, int consumedQuantity,int  thereshold,int expireFactor , Date issuedDate) {
-        this(-1,medicineName, medicineDescription, isRemind, categoryID, reminderID,quantity,dosage,consumedQuantity,thereshold,expireFactor,issuedDate);
+    public Medicine(String medicineName, String medicineDescription, boolean isRemind, int categoryID, int reminderID, int quantity, int dosage, int consumedQuantity, int thereshold, int expireFactor, Date issuedDate) {
+        this(-1, medicineName, medicineDescription, isRemind, categoryID, reminderID, quantity, dosage, consumedQuantity, thereshold, expireFactor, issuedDate);
     }
 
-    public Medicine(int medicineId, String medicineName, String medicineDescription, boolean isRemind, int categoryID, int reminderID, int quantity, int dosage, int consumedQuantity,int  thereshold,int expireFactor , Date issuedDate ) {
+    public Medicine(int medicineId, String medicineName, String medicineDescription, boolean isRemind, int categoryID, int reminderID, int quantity, int dosage, int consumedQuantity, int thereshold, int expireFactor, Date issuedDate) {
         this.medicineId = medicineId;
         this.medicineName = medicineName;
         this.medicineDescription = medicineDescription;
@@ -202,7 +202,7 @@ public class Medicine implements Parcelable {
         dest.writeLong(issuedDate.getTime());
     }
 
-      @Override
+    @Override
     public String toString() {
         return "Medicine{" +
                 "medicineID=" + medicineId +

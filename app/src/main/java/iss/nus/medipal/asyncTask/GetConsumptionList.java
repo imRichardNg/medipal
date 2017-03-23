@@ -18,7 +18,7 @@ public class GetConsumptionList extends AsyncTask<Void, Void, List<Consumption>>
     }
 
     public List<SpinnerObject> getConsumptionMedicineList(){
-       return consumptionDAO.getAllMedicine();
+        return consumptionDAO.getAllMedicine();
     }
 
     @Override

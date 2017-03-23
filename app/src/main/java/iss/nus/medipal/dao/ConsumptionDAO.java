@@ -16,9 +16,10 @@ import iss.nus.medipal.AppFolder.SpinnerObject;
 
 import static iss.nus.medipal.dao.DataBaseHelper.WHERE_ID_EQUALS;
 
-public class ConsumptionDAO extends DBDAO implements DAOInterface<Consumption>{
+public class ConsumptionDAO extends DBDAO implements DAOInterface<Consumption> {
 
     private static final SimpleDateFormat formatter = new SimpleDateFormat("d-MMM-yyyy H:mm", Locale.ENGLISH);
+
     public ConsumptionDAO(Context context) {
         super(context);
     }
@@ -78,7 +79,7 @@ public class ConsumptionDAO extends DBDAO implements DAOInterface<Consumption>{
                 e.printStackTrace();
             }
 
-            return new Consumption(id,medicineId,quantity,consumedOn);
+            return new Consumption(id, medicineId, quantity, consumedOn);
         }
 
         return new Consumption();
@@ -109,14 +110,14 @@ public class ConsumptionDAO extends DBDAO implements DAOInterface<Consumption>{
                 e.printStackTrace();
             }
 
-            Consumption consumption = new Consumption(id,medicineId,quantity,consumedOn);
+            Consumption consumption = new Consumption(id, medicineId, quantity, consumedOn);
             consumptions.add(consumption);
         }
         return consumptions;
     }
 
-    public List<SpinnerObject> getAllMedicine(){
-        List <SpinnerObject> lables = new ArrayList <SpinnerObject> ();
+    public List<SpinnerObject> getAllMedicine() {
+        List<SpinnerObject> lables = new ArrayList<SpinnerObject>();
 
         // db portion
         /*String sql = "SELECT " + DataBaseHelper.ID + ", "
@@ -128,9 +129,9 @@ public class ConsumptionDAO extends DBDAO implements DAOInterface<Consumption>{
             labels.add ( new SpinnerObject(cursor.getInt(0),cursor.getString(1)));
         }*/
 
-        lables.add((new SpinnerObject(1,"Acetaminophen")));
-        lables.add((new SpinnerObject(2,"Diclofenac")));
-        lables.add((new SpinnerObject(3,"Humulin")));
+        lables.add((new SpinnerObject(1, "Acetaminophen")));
+        lables.add((new SpinnerObject(2, "Diclofenac")));
+        lables.add((new SpinnerObject(3, "Humulin")));
         return lables;
     }
 }

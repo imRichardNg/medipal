@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -13,21 +12,33 @@
     tools:context="iss.nus.medipal.activity.ManageAppointmentActivity"
     tools:showIn="@layout/activity_manage_consumption">
 
-    <ListView
-        android:id="@+id/lv_consumption_list"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignParentTop="true"></ListView>
-
-    <TextView
-        android:id="@+id/tv_empty_value"
+    <SearchView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:id="@+id/search">
+
+        <requestFocus
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+    </SearchView>
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/lv_consumption_list"
+        android:layout_below="@+id/search">
+    </ListView>
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_empty_value"
         android:layout_centerInParent="true"
         android:gravity="center"
-        android:text="@string/consumption_empty"
         android:textSize="20sp"
-        android:textStyle="bold" />
-
+        android:textStyle="bold"
+        android:text="No Medical Consumption."
+        />
 </RelativeLayout>
-
