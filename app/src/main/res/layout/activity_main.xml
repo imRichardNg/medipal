@@ -93,6 +93,15 @@
                 android:text="Manage Medical Consumption"
                 android:textColor="@android:color/white" />
 
+            <Button
+                android:id="@+id/btnManageMedicine"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:height="75dp"
+                android:backgroundTint="@color/colorPrimary"
+                android:text="Manage Medicine"
+                android:textColor="@android:color/white" />
+
         </LinearLayout>
 
     </ScrollView>

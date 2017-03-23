@@ -68,6 +68,16 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".activity.EditCategoryActivity" />
 
+
+        <activity
+            android:name=".activity.ManageMedicineActivity"
+            android:label="@string/manage_medicine"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activity.AddMedicineActivity"
+            android:label="Add Medicine" />
+        <activity android:name=".activity.EditMedicineActivity"></activity>
+
     </application>
 
 </manifest>

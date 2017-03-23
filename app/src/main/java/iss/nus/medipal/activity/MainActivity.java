@@ -13,6 +13,7 @@ public class MainActivity extends AppCompatActivity {
     private Button btnManageICE;
     private Button btnManageReminder;
     private Button btnManageAppointment;
+    private Button btnManageMedicine;
     private Button btnManageConsumption;
 
     private Button btnPersonalBio;
@@ -68,6 +69,11 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 startManageCategory();
             }
+        });
+
+        btnManageMedicine = (Button) findViewById(R.id.btnManageMedicine);
+        btnManageMedicine.setOnClickListener(v -> {
+            startActivity(new Intent(getApplicationContext(), ManageMedicineActivity.class));
         });
     }
 

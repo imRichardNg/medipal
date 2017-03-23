@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.Locale;
 
 import iss.nus.medipal.AppFolder.Reminder;
+import iss.nus.medipal.AppFolder.SpinnerObject;
 
 import static iss.nus.medipal.dao.DataBaseHelper.WHERE_ID_EQUALS;
 
@@ -118,5 +119,28 @@ public class ReminderDAO extends DBDAO implements DAOInterface<Reminder> {
         }
 
         return reminders;
+    }
+
+
+    public List<SpinnerObject> getAllReminder() {
+        List<SpinnerObject> lables = new ArrayList<SpinnerObject>();
+
+        // db portion
+        String sql = "SELECT " + DataBaseHelper.ID + ", "
+                + DataBaseHelper.FREQUENCY
+                + " FROM " + DataBaseHelper.REMINDER_TABLE;
+
+        Cursor cursor = database.rawQuery(sql, null);
+        while (cursor.moveToNext()) {
+            lables.add(new SpinnerObject(cursor.getInt(0), cursor.getInt(0) + "_" + cursor.getString(1)));
+        }
+
+        if (cursor.getCount() == 0) {
+            lables.add((new SpinnerObject(1, "1_2")));
+            lables.add((new SpinnerObject(2, "2_5")));
+            lables.add((new SpinnerObject(3, "3_3")));
+        }
+
+        return lables;
     }
 }

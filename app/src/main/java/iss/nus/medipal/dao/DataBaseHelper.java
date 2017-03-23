@@ -11,7 +11,7 @@ import android.util.Log;
 
 public class DataBaseHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "medipalData";
-    private static final int DATABASE_VERSION = 2;
+    private static final int DATABASE_VERSION = 3;
 
     private static final String DROP_TABLE_IF_EXISTS = "DROP TABLE IF EXISTS";
 
@@ -22,6 +22,9 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
     public static final String ID = "id";
     public static final String WHERE_ID_EQUALS = ID + " =?";
+
+    public static final String Med_ID = "medicineId";
+    public static final String WHERE_MEDID_EQUALS = Med_ID + " =?";
 
     public static final String NAME = "name";
     public static final String CONTACT_NO = "contactNo";
@@ -58,7 +61,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     public static final String QUANTITY = "quantity";
     public static final String REMIND = "reminderFlag";
     public static final String REMINDER_ID = "reminderId";
-    public static final String DOSAGE = "reminderFlag";
+    public static final String DOSAGE = "dosage";
     public static final String CONSUMED_QUANTITY = "consumedQuantity";
     public static final String THERSHOLD = "thershold";
     public static final String DATE_ISSUED = "dateIssued";
@@ -105,7 +108,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
                     MEDICINE_CATEGORY_ID + " INTEGER, " +
                     REMINDER_ID + " INTEGER, " +
                     REMIND + " BOOLEAN, " +
-                    QUANTITY + " INTEGER" +
+                    QUANTITY + " INTEGER," +
                     DOSAGE + " INTEGER, " +
                     CONSUMED_QUANTITY + " INTEGER, " +
                     THERSHOLD + " INTEGER, " +

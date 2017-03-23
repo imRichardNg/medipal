@@ -7,7 +7,6 @@ import android.database.Cursor;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -15,7 +14,6 @@ import java.util.Locale;
 import iss.nus.medipal.AppFolder.Consumption;
 import iss.nus.medipal.AppFolder.SpinnerObject;
 
-import static iss.nus.medipal.dao.DataBaseHelper.CONSUMEDON;
 import static iss.nus.medipal.dao.DataBaseHelper.WHERE_ID_EQUALS;
 
 public class ConsumptionDAO extends DBDAO implements DAOInterface<Consumption>{
