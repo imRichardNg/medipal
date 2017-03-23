@@ -101,7 +101,7 @@ public class EditReminderActivity extends AppCompatActivity {
                 }
 
                 String frequency = etFrequency.getText().toString().trim();
-                int frequencyInt = TextUtils.isEmpty(frequency) ? 0 : Integer.valueOf(frequency);
+                int frequencyInt = Integer.valueOf(frequency);
 
                 String interval = etInterval.getText().toString().trim();
                 int intervalInt = TextUtils.isEmpty(interval) || frequencyInt < 1 ? 0 : Integer.valueOf(interval);
@@ -129,15 +129,17 @@ public class EditReminderActivity extends AppCompatActivity {
             } else {
                 frequencyInt = Integer.valueOf(frequency);
 
-                if (frequencyInt < 0) {
-                    etFrequency.setError("Minimum frequency is 0.");
+                if (frequencyInt < 1) {
+                    etFrequency.setError("Minimum frequency is 1.");
                 }
             }
+        } else {
+            etFrequency.setError("Minimum frequency is 1.");
         }
 
         String interval = etInterval.getText().toString().trim();
         int intervalInt = -1;
-        if (frequencyInt > 0) {
+        if (frequencyInt > 1) {
             if (TextUtils.isEmpty(interval)) {
                 etInterval.setError("Please set interval.");
             } else {

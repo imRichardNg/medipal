@@ -14,6 +14,7 @@ import iss.nus.medipal.asyncTask.AddConsumption;
 import iss.nus.medipal.asyncTask.AddHEALTHBIO;
 import iss.nus.medipal.asyncTask.AddICEContact;
 import iss.nus.medipal.asyncTask.AddMEASUREMENT;
+import iss.nus.medipal.asyncTask.AddMedicine;
 import iss.nus.medipal.asyncTask.AddPERSONALBIO;
 import iss.nus.medipal.asyncTask.AddReminder;
 import iss.nus.medipal.asyncTask.DeleteAppointment;
@@ -22,16 +23,19 @@ import iss.nus.medipal.asyncTask.DeleteConsumption;
 import iss.nus.medipal.asyncTask.DeleteHealthBIO;
 import iss.nus.medipal.asyncTask.DeleteICEContact;
 import iss.nus.medipal.asyncTask.DeleteMEASUREMENT;
+import iss.nus.medipal.asyncTask.DeleteMedicine;
 import iss.nus.medipal.asyncTask.DeleteReminder;
 import iss.nus.medipal.asyncTask.EditAppointment;
 import iss.nus.medipal.asyncTask.EditCategoryList;
 import iss.nus.medipal.asyncTask.EditConsumption;
 import iss.nus.medipal.asyncTask.EditICEContact;
+import iss.nus.medipal.asyncTask.EditMedicine;
 import iss.nus.medipal.asyncTask.EditReminder;
 import iss.nus.medipal.asyncTask.GetAppointmentList;
 import iss.nus.medipal.asyncTask.GetCategoryList;
 import iss.nus.medipal.asyncTask.GetConsumptionList;
 import iss.nus.medipal.asyncTask.GetICEContactList;
+import iss.nus.medipal.asyncTask.GetMedicineList;
 import iss.nus.medipal.asyncTask.GetReminderList;
 import iss.nus.medipal.asyncTask.ListHEALTHBIO;
 import iss.nus.medipal.asyncTask.ListMEASUREMENT;
@@ -50,7 +54,7 @@ public class Medipal {
     private List<Personal_Bio> personal_biosList;
     private List<Health_Bio> health_bioList;
     private List<MeasurementData> measurementDataList;
-
+    private List<Medicine> medicineList;
     private List<Category> categoryList;
 
     private AddICEContact taskICEAdd;
@@ -75,6 +79,11 @@ public class Medipal {
     private AddCategory taskCategoryAdd;
     private GetCategoryList taskCategoryList;
     private EditCategoryList taskCategoryEdit;
+
+    private AddMedicine taskMedicineAdd;
+    private GetMedicineList taskMedicineList;
+    private EditMedicine taskMedicineEdit;
+    private DeleteMedicine taskMedicineDelete;
 
     public void addICE(String name, String contactNo, int contactType, String description, Context applicationContext) {
         ICEContact iceContact = new ICEContact(name, contactNo, contactType, description);
@@ -129,7 +138,13 @@ public class Medipal {
         Reminder reminder = new Reminder(startDate, frequency, interval);
 
         AddReminder addReminder = new AddReminder(context);
-        addReminder.execute(reminder);
+        try {
+            System.out.println(addReminder.execute(reminder).get());
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
     }
 
     public void editReminder(int id, Date startDate, int frequency, int interval, Context context) {
@@ -167,6 +182,25 @@ public class Medipal {
         return new ArrayList<Reminder>(reminderList);
     }
 
+    public List<SpinnerObject> getAllReminderList(Context context) {
+
+        GetReminderList getReminderList = new GetReminderList(context);
+        getReminderList.execute((Void) null);
+
+        List<SpinnerObject> reminderList = null;
+
+        try {
+            reminderList = getReminderList.getReminderList();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        if (reminderList == null) {
+            reminderList = new ArrayList<SpinnerObject>();
+        }
+
+        return new ArrayList<SpinnerObject>(reminderList);
+    }
 
     public Personal_Bio addPERSONALBIO(Personal_Bio personal_bio, Context context) {
 
@@ -411,6 +445,26 @@ public class Medipal {
         return new ArrayList<Category>(categoryList);
     }
 
+    public List<SpinnerObject> getAllCategoryList(Context context) {
+
+        GetCategoryList getCategoryList = new GetCategoryList(context);
+        getCategoryList.execute((Void) null);
+
+        List<SpinnerObject> categoryList = null;
+
+        try {
+            categoryList = getCategoryList.getCategoryList();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        if (categoryList == null) {
+            categoryList = new ArrayList<SpinnerObject>();
+        }
+
+        return new ArrayList<SpinnerObject>(categoryList);
+    }
+
     public void editCategory(int categoryID, String cat, String code, String categoryDescription, boolean isReminder, Context context) {
         Category category = new Category(cat, code, categoryDescription, isReminder);
         taskCategoryEdit = new EditCategoryList(context);
@@ -422,5 +476,47 @@ public class Medipal {
 
         DeleteCategory deleteCategory = new DeleteCategory(context);
         deleteCategory.execute(category);
+    }
+
+    public void addMedicine(String medicineName, String medicineDescription, boolean isRemind, int categoryID, int reminderID, int quantity, int dosage, int consumedQuantity, int thereshold, int expireFactor, Date issuedDate, Context applicationContext) {
+        Medicine medicine = new Medicine(medicineName, medicineDescription, isRemind, categoryID, reminderID, quantity, dosage, consumedQuantity, thereshold, expireFactor, issuedDate);
+
+        taskMedicineAdd = new AddMedicine(applicationContext);
+        taskMedicineAdd.execute(medicine);
+    }
+
+    public List<Medicine> getMedicineList(Context context) {
+        taskMedicineList = new GetMedicineList(context);
+        System.out.println("start getMedList");
+        taskMedicineList.execute((Void) null);
+
+        try {
+            medicineList = taskMedicineList.get();
+            System.out.println("getMedList");
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+
+        if (medicineList == null) {
+            medicineList = new ArrayList<Medicine>();
+        }
+
+        return new ArrayList<Medicine>(medicineList);
+    }
+
+    public void editMedicineList(int medid, String medicineName, String medicineDescription, boolean isRemind, int categoryID, int reminderID, int quantity, int dosage, int consumedQuantity, int thereshold, int expireFactor, Date issuedDate, Context applicationContext) {
+        Medicine medicine = new Medicine(medid, medicineName, medicineDescription, isRemind, categoryID, reminderID, quantity, dosage, consumedQuantity, thereshold, expireFactor, issuedDate);
+        taskMedicineEdit = new EditMedicine(applicationContext);
+        taskMedicineEdit.execute(medicine);
+    }
+
+    public void deleteMedicine(int id, Context context) {
+        Medicine medicine = new Medicine(id);
+        //Delete Medicine
+        DeleteMedicine deleteMedicine = new DeleteMedicine(context);
+        deleteMedicine.execute(medicine);
+        System.out.println("deleteMedicine");
     }
 }

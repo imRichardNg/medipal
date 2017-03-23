@@ -6,6 +6,7 @@ import android.os.AsyncTask;
 import java.util.List;
 
 import iss.nus.medipal.AppFolder.Category;
+import iss.nus.medipal.AppFolder.SpinnerObject;
 import iss.nus.medipal.dao.CategoryDAO;
 
 /**
@@ -30,5 +31,9 @@ public class GetCategoryList extends AsyncTask<Void, Void, List<Category>> {
         if (categoryDAO != null) {
             categoryDAO.close();
         }
+    }
+
+    public List<SpinnerObject> getCategoryList() {
+        return categoryDAO.getAllCategory();
     }
 }
