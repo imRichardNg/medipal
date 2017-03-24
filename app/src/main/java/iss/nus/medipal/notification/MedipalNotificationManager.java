@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
+import iss.nus.medipal.AppFolder.Medicine;
 import iss.nus.medipal.AppFolder.Reminder;
 import iss.nus.medipal.application.App;
 
@@ -23,10 +24,25 @@ public class MedipalNotificationManager {
     public static void refreshAlarm(Context context) {
         NotificationScheduler.removeAllNotifications(context);
 
+        List<Medicine> medicineList = App.medipal.getMedicineList(context);
         List<Reminder> reminders = App.medipal.getReminderList(context);
+
         for (int i = 0; i < reminders.size(); i++) {
-            System.out.println(reminders.get(i));
-            scheduleNotificationFromReminder(context, reminders.get(i), null);
+            boolean medicineReminder = false;
+            Reminder reminder = reminders.get(i);
+            for (int j = 0; j < medicineList.size(); j++) {
+                Medicine medicine = medicineList.get(j);
+                medicineReminder = (medicine.getReminderID() == reminder.getId());
+
+                if (medicineReminder) {
+                    scheduleNotificationFromReminder(context, reminder, ReminderType.MEDICINE);
+                    break;
+                }
+            }
+
+            if (!medicineReminder) {
+                scheduleNotificationFromReminder(context, reminder, null);
+            }
         }
     }
 
