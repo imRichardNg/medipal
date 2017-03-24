@@ -11,8 +11,10 @@ import android.widget.TextView;
 
 import iss.nus.medipal.R;
 import iss.nus.medipal.adapter.ConsumptionListAdadpter;
+import iss.nus.medipal.notification.MedipalNotificationManager;
 
-public class ManageConsumptionActivity extends AppCompatActivity {private ConsumptionListAdadpter consumptionListAdadpter;
+public class ManageConsumptionActivity extends AppCompatActivity {
+    private ConsumptionListAdadpter consumptionListAdadpter;
 
     private TextView tvEmptyValue;
 
@@ -43,6 +45,8 @@ public class ManageConsumptionActivity extends AppCompatActivity {private Consum
         super.onResume();
         consumptionListAdadpter.refreshConsumptionList();
         tvEmptyValue.setVisibility(consumptionListAdadpter.getCount() == 0 ? View.VISIBLE : View.GONE);
+
+        MedipalNotificationManager.refreshAlarm(getApplicationContext());
     }
 }
 

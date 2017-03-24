@@ -3,6 +3,9 @@ package iss.nus.medipal.AppFolder;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.lang.reflect.Member;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Consumption implements Parcelable {
@@ -11,6 +14,12 @@ public class Consumption implements Parcelable {
     private int medicineId;
     private int quantity;
     private Date consumedOn;
+    private Medicine medicine;
+    private Category category;
+
+    public static final String DATE_FORMAT = "d-MMM-yyyy";
+    public static final String TIME_FORMAT = "d-MMM-yyyy H:mm";
+    private static DateFormat tf = new SimpleDateFormat(TIME_FORMAT);
 
     public Consumption(){
     }
@@ -26,6 +35,21 @@ public class Consumption implements Parcelable {
     public Consumption(int id, int medicineId, int quantity , Date consumedOn) {
         this.id = id;
         this.medicineId = medicineId;
+        this.quantity = quantity;
+        this.consumedOn = consumedOn;
+    }
+
+    public Consumption(Medicine medicine, Category category, int quantity, Date consumedOn){
+        this.medicine = medicine;
+        this.category = category;
+        this.quantity = quantity;
+        this.consumedOn = consumedOn;
+    }
+
+    public Consumption(int id,Medicine medicine,Category category, int quantity, Date consumedOn){
+        this.id = id;
+        this.medicine = medicine;
+        this.category = category;
         this.quantity = quantity;
         this.consumedOn = consumedOn;
     }
@@ -78,14 +102,27 @@ public class Consumption implements Parcelable {
         this.quantity = quantity;
     }
 
-    @Override
-    public String toString() {
-        return "Consumption{" +
-                "medicineId=" + medicineId +
-                ", quantity=" + quantity +
-                ", consumedOn=" + consumedOn +
-                '}';
+    public void setMedicine(Medicine m) {
+        this.medicine = m;
     }
+
+    public Medicine getMedicine () {
+        return medicine;
+    }
+
+    public void setCategory(Category c) {
+        this.category = c;
+    }
+
+    public Category getCategory () {
+        return category;
+    }
+
+    @Override
+    public String toString () {
+        return ("Consumption: " + id + " - " + medicine.getMedicineName()+ "\r\n( " + category.getCategory() +" )"
+                + "\r\nQuantity " + quantity +  "\r\nConsumedOn: " + tf.format(consumedOn));
+   }
 
     @Override
     public int describeContents() {

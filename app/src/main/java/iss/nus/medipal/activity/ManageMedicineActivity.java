@@ -19,6 +19,7 @@ import iss.nus.medipal.AppFolder.Medipal;
 import iss.nus.medipal.R;
 import iss.nus.medipal.adapter.ICEContactListAdapter;
 import iss.nus.medipal.adapter.MedicineListAdapter;
+import iss.nus.medipal.notification.MedipalNotificationManager;
 
 public class ManageMedicineActivity extends AppCompatActivity {
     private MedicineListAdapter medicineListAdapter;
@@ -73,5 +74,7 @@ public class ManageMedicineActivity extends AppCompatActivity {
         super.onResume();
         medicineListAdapter.refreshMedicineList();
         tvEmptyValue.setVisibility(medicineListAdapter.getCount() == 0 ? View.VISIBLE : View.GONE);
+
+        MedipalNotificationManager.refreshAlarm(getApplicationContext());
     }
 }

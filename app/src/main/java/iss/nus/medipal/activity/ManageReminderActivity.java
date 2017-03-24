@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import iss.nus.medipal.R;
 import iss.nus.medipal.adapter.ReminderListAdapter;
+import iss.nus.medipal.notification.MedipalNotificationManager;
 
 public class ManageReminderActivity extends AppCompatActivity {
     ReminderListAdapter reminderListAdapter;
@@ -44,5 +45,7 @@ public class ManageReminderActivity extends AppCompatActivity {
         super.onResume();
         reminderListAdapter.refreshReminderList();
         tvEmptyValue.setVisibility(reminderListAdapter.getCount() == 0 ? View.VISIBLE : View.GONE);
+
+        MedipalNotificationManager.refreshAlarm(getApplicationContext());
     }
 }

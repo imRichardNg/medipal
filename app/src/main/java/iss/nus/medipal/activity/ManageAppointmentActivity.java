@@ -11,8 +11,9 @@ import android.widget.TextView;
 
 import iss.nus.medipal.R;
 import iss.nus.medipal.adapter.AppointmentListAdapter;
+import iss.nus.medipal.notification.MedipalNotificationManager;
 
-public class ManageAppointmentActivity  extends AppCompatActivity {
+public class ManageAppointmentActivity extends AppCompatActivity {
 
     private AppointmentListAdapter appointmentListAdapter;
 
@@ -45,5 +46,7 @@ public class ManageAppointmentActivity  extends AppCompatActivity {
         super.onResume();
         appointmentListAdapter.refreshAppointmentList();
         tvEmptyValue.setVisibility(appointmentListAdapter.getCount() == 0 ? View.VISIBLE : View.GONE);
+
+        MedipalNotificationManager.refreshAlarm(getApplicationContext());
     }
 }

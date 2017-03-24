@@ -1,15 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_add_appointment"
+    android:id="@+id/activity_edit_reminder"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="iss.nus.medipal.activity.AddConsumptionActivity">
-
+    tools:context="iss.nus.medipal.activity.EditConsumptionActivity">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -43,9 +38,9 @@
                     android:layout_alignStart="@id/tv_consumedOnDate"
                     android:layout_below="@id/tv_consumedOnDate"
                     android:focusable="false"
+                    android:focusableInTouchMode="false"
                     android:hint="ConsumedOn Date"
-                    android:inputType="datetime"
-                    android:focusableInTouchMode="false"/>
+                    android:inputType="datetime" />
 
 
                 <TextView
@@ -71,9 +66,9 @@
                     android:layout_below="@+id/tv_consumedOnTime"
                     android:layout_toEndOf="@id/tv_consumedOnDate"
                     android:layout_toRightOf="@id/tv_consumedOnDate"
+                    android:focusableInTouchMode="false"
                     android:hint="Time"
-                    android:inputType="datetime"
-                    android:focusableInTouchMode="false"/>
+                    android:inputType="datetime" />
 
             </RelativeLayout>
 
@@ -121,16 +116,29 @@
                 android:inputType="number" />
 
             <Button
-                android:id="@+id/btn_addConsumption"
+                android:id="@+id/btn_editConsumption"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
                 android:layout_below="@id/et_quantity"
-                android:layout_margin="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="20dp"
                 android:background="@color/colorPrimary"
                 android:text="@string/save"
                 android:textColor="@android:color/white" />
+
+            <Button
+                android:id="@+id/btn_deleteConsumption"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_below="@id/btn_editConsumption"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="10dp"
+                android:background="@android:color/holo_red_dark"
+                android:text="@string/delete"
+                android:textColor="@android:color/white" />
         </RelativeLayout>
     </ScrollView>
-
 </RelativeLayout>
