@@ -4,7 +4,7 @@ public class SpinnerObject {
     private int id;
     private String strValue;
 
-    public SpinnerObject ( int id , String strValue ) {
+    public SpinnerObject(int id , String strValue ) {
         this.id = id;
         this.strValue = strValue;
     }
